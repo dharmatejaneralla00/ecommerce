@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Availbility</th>
+        <th>View</th>
+    </tr>
+    {% for i in items %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.avalability}}</td>
+        <td><a href="{% url 'items/' i.uid %}">View</a></td>
+        <td><a href="{% url 'addtocart/' i.uid %}">Add to Cart</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'logout/' %}">Logout</a>
+</body>
+</html>
