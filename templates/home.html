@@ -5,6 +5,7 @@
     <title>Home</title>
 </head>
 <body>
+<h1>useer logged:  {{user.username}}</h1>
 <table>
     <tr>
         <th>Name</th>
@@ -19,9 +20,12 @@
         <td>{{i.avalability}}</td>
         <td><a href="{% url 'items/' i.uid %}">View</a></td>
         <td><a href="{% url 'addtocart/' i.uid %}">Add to Cart</a></td>
+        <td><a href="{% url 'delete/' i.uid %}">Delete</a></td>
     </tr>
     {% endfor %}
 </table>
 <a href="{% url 'logout/' %}">Logout</a>
+<a href="{% url 'createuser/' %}">Create user</a>
+<a href="{% url 'additems/' %}">Add items</a>
 </body>
 </html>

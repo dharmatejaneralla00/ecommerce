@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 
@@ -28,3 +29,18 @@ def logoutuser(request):
     logout(request)
     messages.success(request,"Logout Successful")
     return render(request,'login.html')
+
+def createuser(r):
+    if r.method == 'POST':
+        username = r.POST['username']
+        password = r.POST['password']
+        name = r.POST['name']
+        if User.objects.filter(username = username).exists():
+            messages.error(r,'username alrady exists')
+            return  render(r,'add uuser.html')
+        else:
+            user = User.objects.create_user(username = username,password=password)
+            user.first_name = name
+            user.save()
+            return redirect('home/')
+    return render(r,'add uuser.html')
